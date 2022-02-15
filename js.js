@@ -51,7 +51,6 @@ function submit(userName) {
   result = result.replaceAll('{userName}', userName);
   
   jobnumber = index;
-  alert(index);
   return result;
 }
 
@@ -62,7 +61,6 @@ function submit(userName) {
 const battleButton = document.getElementById('battle');
 battleButton.onclick = () => {
   if(jobnumber===0){mycard=jobA;}else if(jobnumber===1){mycard=jobB;}else if(jobnumber===2){mycard=jobC;}else if(jobnumber===3){mycard=jobD;}
-  alert(jobnumber);
     // サイコロ処理
   let saikoro = Math.floor( Math.random() * 6);
   cardA = mycard[saikoro];
