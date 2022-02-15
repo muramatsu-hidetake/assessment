@@ -1,0 +1,30 @@
+/* 演習に必要な設定（消さないでください） */
+body, h1, h2, p, form, input, ul {
+    margin: 0;
+    padding: 0;
+  }
+  /* 設定ここまで */
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+    background-color: thistle;
+  }
+  
+
+  .char{
+      margin:10px auto;
+      text-align: center;
+  }
+
+  .log{
+      font-size:13px;
+      margin:15px 20%;
+      border:1px solid black;
+      padding: 15px;
+      background-color: aliceblue;
+  }
+  .reset{
+      margin-top: 20px;
+      width: 250px;
+      background-color: black;
+      color: aliceblue;
+  }
