@@ -1,221 +1,248 @@
-/* 演習に必要な設定（消さないでください） */
-body, h1, h2, p, form, input, ul {
-    margin: 0;
-    padding: 0;
+'use strict';
+const userNameInput = document.getElementById('name');
+const submitButton = document.getElementById('submit');
+const resultDivided = document.getElementById('result-area');
+const battlelog = document.getElementById('log');
+
+const animation = document.getElementById('animation');
+const one = document.getElementById('logone');
+const two = document.getElementById('logtwo');
+const three = document.getElementById('logthree');
+const four = document.getElementById('logfour');
+const five = document.getElementById('logfive');
+const six = document.getElementById('logsix');
+
+// 職業リスト
+const answers = [
+  '{userName}は戦闘狂です',
+  '{userName}は魔術師です',
+  '{userName}はタコです',
+  '{userName}はカタツムリ、もしくはナメクジです'
+];
+
+let jobnumber = 0;
+
+
+// 名前ボタン＞結果表示
+submitButton.onclick = () => {
+  const userName = userNameInput.value;
+  if (userName.length === 0) {
+    return;
   }
-  /* 設定ここまで */
-  body {
-    font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-    background-color: thistle;
+
+  removeAllChildren(resultDivided);
+  const header = document.createElement('h3');
+  header.innerText = '結果';
+  resultDivided.appendChild(header);
+
+  const paragraph = document.createElement('p');
+  const result = submit(userName);
+  paragraph.innerText = result;
+  resultDivided.appendChild(paragraph);
+};
+
+function removeAllChildren(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
   }
+}
+
+  // 職業ランダム割り振り
+function submit(userName) {
+  let sumOfcharCode = 0;
+  for (let i = 0; i < userName.length; i++) {
+    sumOfcharCode = sumOfcharCode + userName.charCodeAt(i);
+  }
+  let index = sumOfcharCode % answers.length;
+  let result = answers[index];
+  result = result.replaceAll('{userName}', userName);
   
-
-  .char{
-      margin:10px auto;
-      text-align: center;
-  }
-
-  .log{
-      font-size:13px;
-      margin:15px 20%;
-      border:1px solid black;
-      padding: 15px;
-      background-color: aliceblue;
-  }
-  .reset{
-      margin-top: 20px;
-      width: 250px;
-      background-color: black;
-      color: aliceblue;
-  }
-
-
-  .logarea{
-      height:130px;
-      width:80%;
-      margin:0 auto;
-      margin-top: 15px;
-      background-color: aliceblue;
-      padding:10px;
-  }
-  .logtext{
-      opacity: 0;
+  jobnumber = index;
+  alert(index);
+  return result;
 }
+
+
+
+// 戦闘処理ここから
+const battleButton = document.getElementById('battle');
+battleButton.onclick = () => {
+  if(jobnumber===0){mycard=jobA;}else if(jobnumber===1){mycard=jobB;}else if(jobnumber===2){mycard=jobC;}else if(jobnumber===3){mycard=jobD;}
+    // サイコロ処理
+  let saikoro = Math.floor( Math.random() * 6);
+  cardA = mycard[saikoro];
+
+  let comment = "";
+  if(jobnumber===0){comment=jobAtext;}else if(jobnumber===1){comment=jobBtext;}else if(jobnumber===2){comment=jobCtext;}else if(jobnumber===3){comment=jobDtext;}
+  const logloglog = document.createElement('p');
+  logloglog.innerText = (comment[saikoro]);
+
+    // 相手への攻撃計算
+  let resultA = Action(cardA[0],cardB[1]);
+  const loglog = document.createElement('p');
+  loglog.innerText = (`あいてに${resultA}のダメージ`);
+
+  HPB = HPB - resultA;
+  const logtwo = document.createElement('p');
+  logtwo.innerText = `相手の残り体力：${HPB}`;
+
+  // 自分への攻撃計算
+  let resultB = Action(cardB[0],cardA[1]);
+  const logthree = document.createElement('p');
+  logthree.innerText = `${resultB}のダメージをうけた`;
   
-.logone{
-    animation-name: one;
-    animation-duration: 8.5s;
-    animation-iteration-count: 1;
-    color:black;
+  HPA = HPA - resultB;
+  const logfour = document.createElement('p');
+  logfour.innerText = `こちらの体力：${HPA}`;
+
+
+  const logfive = document.createElement('p');
+  logfive.innerText = `-----------ターン終了-----------`;
+
+  //勝ち負け
+  if(HPA <=0){
+    removelog();
+    const lose = document.createElement('p');
+    lose.innerText = `${userNameInput.value}は力尽きた・・・。`;
+    one.appendChild(lose);
+    return;
+  }else if(HPB <=0){
+    removelog();
+    const win = document.createElement('p');
+    win.innerText = `相手を倒した！`;
+    one.appendChild(win);
+    return;
+  }else{
+    removelog();
+    one.appendChild(logfive);
+    two.appendChild(logfour);
+    three.appendChild(logthree);
+    four.appendChild(logtwo);
+    five.appendChild(loglog);
+    six.appendChild(logloglog);
+    one.className = 'logtext';
+    two.className = 'logtext';
+    three.className = 'logtext';
+    four.className = 'logtext';
+    five.className = 'logtext';
+    six.className = 'logtext';
+    animation.className = 'logtext';
+  }
+
+
+
+    set = 1;
+  return;
+};
+
+// ログ整理の関数
+const removelog = ()=>{
+    removeAllChildren(one);
+    removeAllChildren(two);
+    removeAllChildren(three);
+    removeAllChildren(four);
+    removeAllChildren(five);
+    removeAllChildren(six);
 }
-@keyframes one{
-    0%{
-        opacity: 0;
-        }
-        88.23%{
-        opacity: 0;
-        }
-        94.11%{
-        opacity: 0;
-        }
-        100%{
-        opacity: 1;
-        }
-    
+
+let set = 0;
+function setanime(i){
+  if(set = i){
+    one.className = 'logone';
+    two.className = 'logtwo';
+    three.className = 'logthree';
+    four.className = 'logfour';
+    five.className = 'logfive';
+    six.className = 'logsix';
+    animation.className = 'animation';
+  }
 }
-.logtwo{
-    animation-name: two;
-    animation-duration: 7s;
-    animation-iteration-count: 1;
+setInterval("setanime(1)",10);
+
+// ダメージ計算
+const Action = function(atack,block){
+  let result = atack - block ;
+  if(result < 0){
+    result = 0;
+  }
+  return result;
 }
-@keyframes two{
-    0%{
-        opacity: 0;
-        }
-        85.71%{
-        opacity: 0;
-        }
-        92.85%{
-        opacity: 1;
-        }
-        100%{
-        opacity: 1;
-        }
-    
-}
-.logthree{
-    animation-name: three;
-    animation-duration: 5.5s;
-    animation-iteration-count: 1;
-}
-@keyframes three{
-    0%{
-        opacity: 0;
-        }
-        81.81%{
-        opacity: 0;
-        }
-        87.5%{
-        opacity: 1;
-        }
-        100%{
-        opacity: 1;
-        }
-    
-}
-.logfour{
-    animation-name: four;
-    animation-duration: 4s;
-    animation-iteration-count: 1;
-}
-@keyframes four{
-    0%{
-    opacity: 0;
-    }
-    75%{
-    opacity: 0;
-    }
-    87.5%{
-    opacity: 1;
-    }
-    100%{
-    opacity: 1;
-    }
-}
-.logfive{
-    animation-name: five;
-    animation-duration: 2.5s;
-    animation-iteration-count: 1;
-}
-@keyframes five{
-    0%{
-        opacity: 0;
-    }
-    60%{
-        opacity: 0;
-    }
-    80%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 1;
-    }
-}
-.logsix{
-    animation-name: six;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-}
-@keyframes six{
-    0%{
-        opacity: 0;
-    }
-    50%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 1;
-    }
-}
-.animation{
-    animation-name: animation;
-    animation-duration: 10s;
-    animation-iteration-count: 1;
-    line-height: 16px;
-}
-@keyframes animation{
-    0%{
-        position: relative;
-        top: -83.33px;
-    }
-    10%{
-        position: relative;
-        top: -83.33px;
-    }
-    15%{
-        position: relative;
-        top: -66.66px;
-    }
-    25%{
-        position: relative;
-        top: -66.66px;
-    }
-    30%{
-        position: relative;
-        top: -50px;
-    }
-    40%{
-        position: relative;
-        top: -50px;
-    }
-    45%{
-        position: relative;
-        top: -33.33px;
-    }
-    55%{
-        position: relative;
-        top: -33.33px;
-    }
-    60%{
-        position: relative;
-        top: -16.66px;
-    }
-    70%{
-        position: relative;
-        top: -16.66px;
-    }
-    75%{
-        position: relative;
-        top: 0px;
-    }
-    85%{
-        position: relative;
-        top: 0px;
-    }
-    90%{
-        position: relative;
-        top: 0px;
-    }
-    100%{
-    }
-}
+
+
+// ダメージリセット
+const resetButton = document.getElementById('reset');
+resetButton.onclick = () => {HPA = 100; HPB=100;}
+
+// HPの初期値
+let HPA = 100;
+let HPB = 100;
+// 攻撃力定義。Aはこちら、Bは相手の手札
+let cardA = [60,30];
+let cardB = [40,20];
+
+
+let mycard = [
+  [60,30],
+  [10,10],
+  [1,1],
+  [5,5],
+  [12,12],
+  [14,14]
+];
+
+const jobA =[[99,10],
+[99,10],
+[99,10],
+[99,10],
+[99,10],
+[99,10]];
+const jobAtext =[
+  'ヒーハー！',
+  'なぐった',
+  'けった',
+  'パンチ',
+  'キック',
+  'クリティカル！'
+  ];
+const jobB =[[50,50],
+[50,50],
+[50,50],
+[50,50],
+[50,50],
+[50,50]];
+const jobBtext =[
+  '私は医者だ',
+  'この手が動けば・・',
+  '2000通りの未来を見てきた',
+  '唯一の方法だ',
+  '私はドクターストレンジ',
+  'タイムストーンを守っている'
+  ];
+const jobC =[[30,30],
+[30,30],
+[30,30],
+[30,30],
+[30,30],
+[30,30]];
+const jobCtext =[
+  'なかよくしてね',
+  'たこはメンダコだよ',
+  'をどる？',
+  'ぺちゃん',
+  '深海にいるよ',
+  '陸の生き物だよ'
+  ];
+const jobD =[[10,10],
+[10,10],
+[10,10],
+[10,10],
+[10,10],
+[10,10]];
+const jobDtext =[
+  'ぬるぬるしたが無意味',
+  'いろんなところにいるよ',
+  'ねむい',
+  '塩はまかないでね',
+  'ゆっくり動いた！',
+  'のろい！'
+  ];
