@@ -3,6 +3,8 @@ const userNameInput = document.getElementById('name');
 const submitButton = document.getElementById('submit');
 const resultDivided = document.getElementById('result-area');
 const battlelog = document.getElementById('log');
+const start = document.getElementById('battle');
+const reset = document.getElementById('reset');
 
 const animation = document.getElementById('animation');
 const one = document.getElementById('logone');
@@ -25,10 +27,15 @@ let jobnumber = 0;
 
 // 名前ボタン＞結果表示
 submitButton.onclick = () => {
+  document.getElementById("battle").style.display = "inline-block";
+
   const userName = userNameInput.value;
   if (userName.length === 0) {
     return;
   }
+
+  resetButton.onclick();
+  
 
   removeAllChildren(resultDivided);
   const header = document.createElement('h3');
@@ -39,6 +46,7 @@ submitButton.onclick = () => {
   const result = submit(userName);
   paragraph.innerText = result;
   resultDivided.appendChild(paragraph);
+  
 };
 
 function removeAllChildren(element) {
@@ -58,6 +66,7 @@ function submit(userName) {
   result = result.replaceAll('{userName}', userName);
   
   jobnumber = index;
+  alert(index);
   return result;
 }
 
@@ -94,22 +103,23 @@ battleButton.onclick = () => {
   const logfour = document.createElement('p');
   logfour.innerText = `こちらの体力：${HPA}`;
 
-
   const logfive = document.createElement('p');
   logfive.innerText = `-----------ターン終了-----------`;
 
   //勝ち負け
-  if(HPA <=0){
+  if(HPA <= 0){
     removelog();
-    const lose = document.createElement('p');
-    lose.innerText = `${userNameInput.value}は力尽きた・・・。`;
-    one.appendChild(lose);
+    document.getElementById("loserbig").style.display = "block";
+
+    start.style.display='none';
+    document.getElementById("reset").style.display = "inline-block";
     return;
   }else if(HPB <=0){
     removelog();
-    const win = document.createElement('p');
-    win.innerText = `相手を倒した！`;
-    one.appendChild(win);
+    document.getElementById("winerbig").style.display = "block";
+    
+    start.style.display='none';
+    document.getElementById("reset").style.display = "inline-block";
     return;
   }else{
     removelog();
@@ -126,13 +136,21 @@ battleButton.onclick = () => {
     five.className = 'logtext';
     six.className = 'logtext';
     animation.className = 'logtext';
-  }
 
-
-
+    const nextturn = document.createElement('p');
+    nextturn.innerText = `次のターン`;
+    start.appendChild(nextturn);
     set = 1;
+  }
   return;
 };
+document.getElementById("loserbig").style.display = "none";
+document.getElementById("winerbig").style.display = "none";
+
+const starter = document.createElement('p');
+starter.innerText = `戦闘開始`;
+start.appendChild(starter);
+
 
 // ログ整理の関数
 const removelog = ()=>{
@@ -142,11 +160,12 @@ const removelog = ()=>{
     removeAllChildren(four);
     removeAllChildren(five);
     removeAllChildren(six);
+    removeAllChildren(start);
 }
 
 let set = 0;
-function setanime(i){
-  if(set = i){
+function setanime(){
+  if(set = 1){
     one.className = 'logone';
     two.className = 'logtwo';
     three.className = 'logthree';
@@ -156,7 +175,7 @@ function setanime(i){
     animation.className = 'animation';
   }
 }
-setInterval("setanime(1)",10);
+setInterval("setanime()",10);
 
 // ダメージ計算
 const Action = function(atack,block){
@@ -170,7 +189,15 @@ const Action = function(atack,block){
 
 // ダメージリセット
 const resetButton = document.getElementById('reset');
-resetButton.onclick = () => {HPA = 100; HPB=100;}
+resetButton.onclick = () => {
+  HPA = 100; HPB=100;
+  document.getElementById("reset").style.display = "none";
+  start.style.display='inline-block';
+  removeAllChildren(start);
+  start.appendChild(starter);
+  document.getElementById("loserbig").style.display = "none";
+  document.getElementById("winerbig").style.display = "none";
+}
 
 // HPの初期値
 let HPA = 100;
