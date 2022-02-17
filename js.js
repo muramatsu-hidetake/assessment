@@ -58,7 +58,6 @@ function submit(userName) {
   result = result.replaceAll('{userName}', userName);
   
   jobnumber = index;
-  alert(index);
   return result;
 }
 
