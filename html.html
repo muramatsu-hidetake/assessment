@@ -10,10 +10,35 @@
 </head>
 <body>
     <div class="char">
+        <div>
         <h1>バトルえんぴつWEB</h1>
         <input type="text" id="name" size="40" maxlength="20" />
         <button id="submit">天命を授かる</button>
+    </div>
+        
+    <div class="height">
         <div id="result-area"></div>
+        
+        <dvi>
+            <div id ="namearea" class="namearea">
+                <div id="myname" class="none">
+
+                </div>
+                <div id ="enemyname">
+
+                </div>
+            </div>
+        </dvi>
+    </div>
+        <div class="hp">
+            <div id="life-frame">
+                <div id="life-bar"></div>
+            </div>
+            <div id="life-frametwo">
+                <div id="life-bartwo"></div>
+            </div>
+        </div>
+
         <div class="logarea">
             <div id="animation" class="animation">
                 <div id="logone"></div>
@@ -24,13 +49,17 @@
                 <div id="logsix"></div>
             </div>
             <div id="winerbig" class="winerbig">
-                <div id="winner">
+                <div id="winner" class ="default">
                     勝利した！！
+                </div>
+                <div id="winnertwo" class ="default">
                 </div>
             </div>
             <div id="loserbig" class="loserbig">
-                <div id="loser">
-                    負けてしまった・・
+                <div id="loser" class ="default">
+                    <p>負けてしまった・・</p>
+                </div>
+                <div id="losertwo" class ="default">
                 </div>
             </div>
         </div>
