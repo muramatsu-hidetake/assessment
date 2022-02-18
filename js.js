@@ -5,6 +5,12 @@ const resultDivided = document.getElementById('result-area');
 const battlelog = document.getElementById('log');
 const start = document.getElementById('battle');
 const reset = document.getElementById('reset');
+const winner = document.getElementById('winner');
+const loser = document.getElementById('loser');
+const winnertwo = document.getElementById('winnertwo');
+const losertwo = document.getElementById('losertwo');
+const myname = document.getElementById('myname');
+const enemyname = document.getElementById('enemyname');
 
 const animation = document.getElementById('animation');
 const one = document.getElementById('logone');
@@ -28,25 +34,26 @@ let jobnumber = 0;
 // 名前ボタン＞結果表示
 submitButton.onclick = () => {
   document.getElementById("battle").style.display = "inline-block";
-
   const userName = userNameInput.value;
   if (userName.length === 0) {
     return;
   }
-
   resetButton.onclick();
-  
-
   removeAllChildren(resultDivided);
-  const header = document.createElement('h3');
-  header.innerText = '結果';
-  resultDivided.appendChild(header);
-
   const paragraph = document.createElement('p');
   const result = submit(userName);
   paragraph.innerText = result;
   resultDivided.appendChild(paragraph);
   
+  namelog(userName);
+  if(myname.className = 'none'){}{myname.className='none';}
+  resultDivided.className='display';
+  removeAllChildren(one);
+  removeAllChildren(two);
+  removeAllChildren(three);
+  removeAllChildren(four);
+  removeAllChildren(five);
+  removeAllChildren(six);
 };
 
 function removeAllChildren(element) {
@@ -54,6 +61,14 @@ function removeAllChildren(element) {
     element.removeChild(element.firstChild);
   }
 }
+
+function namelog(username){
+  removeAllChildren(myname);
+  const namelog = document.createElement('p');
+  namelog.innerText = username + '　種族：' + jobname[jobnumber];
+  myname.appendChild(namelog);
+}
+
 
   // 職業ランダム割り振り
 function submit(userName) {
@@ -64,7 +79,6 @@ function submit(userName) {
   let index = sumOfcharCode % answers.length;
   let result = answers[index];
   result = result.replaceAll('{userName}', userName);
-  
   jobnumber = index;
   return result;
 }
@@ -74,13 +88,22 @@ function submit(userName) {
 // 戦闘処理ここから
 const battleButton = document.getElementById('battle');
 battleButton.onclick = () => {
-  if(jobnumber===0){mycard=jobA;}else if(jobnumber===1){mycard=jobB;}else if(jobnumber===2){mycard=jobC;}else if(jobnumber===3){mycard=jobD;}
+  myname.className='myname';
+  resultDivided.className='none';
+  
+  if(jobnumber===0){mycard=jobA;}
+  else if(jobnumber===1){mycard=jobB;}
+  else if(jobnumber===2){mycard=jobC;}
+  else if(jobnumber===3){mycard=jobD;}
     // サイコロ処理
   let saikoro = Math.floor( Math.random() * 6);
   cardA = mycard[saikoro];
 
   let comment = "";
-  if(jobnumber===0){comment=jobAtext;}else if(jobnumber===1){comment=jobBtext;}else if(jobnumber===2){comment=jobCtext;}else if(jobnumber===3){comment=jobDtext;}
+  if(jobnumber===0){comment=jobAtext;}
+  else if(jobnumber===1){comment=jobBtext;}
+  else if(jobnumber===2){comment=jobCtext;}
+  else if(jobnumber===3){comment=jobDtext;}
   const logloglog = document.createElement('p');
   logloglog.innerText = (comment[saikoro]);
 
@@ -106,21 +129,31 @@ battleButton.onclick = () => {
   logfive.innerText = `-----------ターン終了-----------`;
 
   //勝ち負け
+  lifeBar.style.width = HPA+"%";
+  lifeBartwo.style.width = HPB+"%";
   if(HPA <= 0){
+    HPA = 0;
+    lifeBar.style.width = HPA+"%";
     removelog();
     document.getElementById("loserbig").style.display = "block";
-
+    loser.className = 'notdefault';
+    losertwo.className = 'notdefaulttwo';
+    losertwo.appendChild(logthree);
     start.style.display='none';
     document.getElementById("reset").style.display = "inline-block";
     return;
   }else if(HPB <=0){
+    HPB = 0;
+    lifeBartwo.style.width = HPB+"%";
     removelog();
     document.getElementById("winerbig").style.display = "block";
-    
+    winner.className = 'notdefault';
+    winnertwo.className = 'notdefaulttwo';
+    winnertwo.appendChild(loglog);
     start.style.display='none';
     document.getElementById("reset").style.display = "inline-block";
     return;
-  }else{
+  }else {
     removelog();
     one.appendChild(logfive);
     two.appendChild(logfour);
@@ -128,28 +161,26 @@ battleButton.onclick = () => {
     four.appendChild(logtwo);
     five.appendChild(loglog);
     six.appendChild(logloglog);
-    one.className = 'logtext';
-    two.className = 'logtext';
-    three.className = 'logtext';
-    four.className = 'logtext';
-    five.className = 'logtext';
-    six.className = 'logtext';
-    animation.className = 'logtext';
-
+    
     const nextturn = document.createElement('p');
     nextturn.innerText = `次のターン`;
     start.appendChild(nextturn);
     set = 1;
-  }
-  return;
+    return;}
 };
 document.getElementById("loserbig").style.display = "none";
 document.getElementById("winerbig").style.display = "none";
 
 const starter = document.createElement('p');
-starter.innerText = `戦闘開始`;
+starter.innerText = `はじめる`;
 start.appendChild(starter);
 
+
+// HPゲージ
+const lifeBar = document.getElementById('life-bar');
+lifeBar.style.width = "100%";
+const lifeBartwo = document.getElementById('life-bartwo');
+lifeBartwo.style.width = "100%";
 
 // ログ整理の関数
 const removelog = ()=>{
@@ -160,7 +191,17 @@ const removelog = ()=>{
     removeAllChildren(five);
     removeAllChildren(six);
     removeAllChildren(start);
-}
+    removeAllChildren(winnertwo);
+    removeAllChildren(losertwo);
+    one.classList.remove('logone');
+    two.classList.remove('logtwo');
+    three.classList.remove('logthree');
+    four.classList.remove('logfour');
+    five.classList.remove('logfive');
+    six.classList.remove('logsix');
+    animation.classList.remove('animation');
+    start.classList.remove('starts');
+  }
 
 let set = 0;
 function setanime(){
@@ -172,9 +213,12 @@ function setanime(){
     five.className = 'logfive';
     six.className = 'logsix';
     animation.className = 'animation';
+    start.className = 'starts';
+    set = 0;
+    return;
   }
 }
-setInterval("setanime()",10);
+setInterval("setanime()",1);
 
 // ダメージ計算
 const Action = function(atack,block){
@@ -190,6 +234,8 @@ const Action = function(atack,block){
 const resetButton = document.getElementById('reset');
 resetButton.onclick = () => {
   HPA = 100; HPB=100;
+  lifeBar.style.width = HPA+"%";
+  lifeBartwo.style.width = HPB+"%";
   document.getElementById("reset").style.display = "none";
   start.style.display='inline-block';
   removeAllChildren(start);
@@ -205,7 +251,7 @@ let HPB = 100;
 let cardA = [60,30];
 let cardB = [40,20];
 
-
+let jobname = ['盗賊','魔術師','たこ','カタツムリ'];
 let mycard = [
   [60,30],
   [10,10],
