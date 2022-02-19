@@ -11,6 +11,11 @@ const winnertwo = document.getElementById('winnertwo');
 const losertwo = document.getElementById('losertwo');
 const myname = document.getElementById('myname');
 const enemyname = document.getElementById('enemyname');
+const tyuui = document.getElementById('tyuui');
+const skilla = document.getElementById('skilla');
+const skillb = document.getElementById('skillb');
+const skillc = document.getElementById('skillc');
+const skilld = document.getElementById('skilld');
 
 const animation = document.getElementById('animation');
 const one = document.getElementById('logone');
@@ -54,7 +59,29 @@ submitButton.onclick = () => {
   removeAllChildren(four);
   removeAllChildren(five);
   removeAllChildren(six);
+
+  if(jobnumber===0){
+  mymenu.style.display = 'block';
+  mymenutwo.style.display = 'none';
+  mymenuthree.style.display = 'none';
+  mymenufour.style.display = 'none';}
+  else if(jobnumber===1){
+  mymenu.style.display = 'none';
+  mymenuthree.style.display = 'none';
+  mymenufour.style.display = 'none';
+  mymenutwo.style.display = 'block';}
+  else if(jobnumber===2){
+  mymenu.style.display = 'none';
+  mymenutwo.style.display = 'none';
+  mymenufour.style.display = 'none';
+  mymenuthree.style.display = 'block';}
+  else if(jobnumber===3){
+  mymenu.style.display = 'none';
+  mymenutwo.style.display = 'none';
+  mymenuthree.style.display = 'none';
+  mymenufour.style.display = 'block';}
 };
+
 
 function removeAllChildren(element) {
   while (element.firstChild) {
@@ -62,6 +89,7 @@ function removeAllChildren(element) {
   }
 }
 
+  // 名前と職業を表示
 function namelog(username){
   removeAllChildren(myname);
   const namelog = document.createElement('p');
@@ -90,22 +118,24 @@ const battleButton = document.getElementById('battle');
 battleButton.onclick = () => {
   myname.className='myname';
   resultDivided.className='none';
-  
   if(jobnumber===0){mycard=jobA;}
   else if(jobnumber===1){mycard=jobB;}
   else if(jobnumber===2){mycard=jobC;}
   else if(jobnumber===3){mycard=jobD;}
     // サイコロ処理
+
   let saikoro = Math.floor( Math.random() * 6);
   cardA = mycard[saikoro];
 
+
+  const userName = userNameInput.value;
   let comment = "";
   if(jobnumber===0){comment=jobAtext;}
   else if(jobnumber===1){comment=jobBtext;}
   else if(jobnumber===2){comment=jobCtext;}
   else if(jobnumber===3){comment=jobDtext;}
   const logloglog = document.createElement('p');
-  logloglog.innerText = (comment[saikoro]);
+  logloglog.innerText = (userName+' の '+comment[saikoro]);
 
     // 相手への攻撃計算
   let resultA = Action(cardA[0],cardB[1]);
@@ -141,6 +171,7 @@ battleButton.onclick = () => {
     losertwo.appendChild(logthree);
     start.style.display='none';
     document.getElementById("reset").style.display = "inline-block";
+    resetandfixbtn=1;
     return;
   }else if(HPB <=0){
     HPB = 0;
@@ -152,6 +183,7 @@ battleButton.onclick = () => {
     winnertwo.appendChild(loglog);
     start.style.display='none';
     document.getElementById("reset").style.display = "inline-block";
+    resetandfixbtn=1;
     return;
   }else {
     removelog();
@@ -161,7 +193,7 @@ battleButton.onclick = () => {
     four.appendChild(logtwo);
     five.appendChild(loglog);
     six.appendChild(logloglog);
-    
+
     const nextturn = document.createElement('p');
     nextturn.innerText = `次のターン`;
     start.appendChild(nextturn);
@@ -261,59 +293,285 @@ let mycard = [
   [14,14]
 ];
 
-const jobA =[[99,10],
-[99,10],
-[99,10],
-[99,10],
-[99,10],
-[99,10]];
-const jobAtext =[
-  'ヒーハー！',
-  'なぐった',
-  'けった',
-  'パンチ',
-  'キック',
-  'クリティカル！'
-  ];
-const jobB =[[50,50],
-[50,50],
-[50,50],
-[50,50],
-[50,50],
-[50,50]];
-const jobBtext =[
-  '私は医者だ',
-  'この手が動けば・・',
-  '2000通りの未来を見てきた',
-  '唯一の方法だ',
-  '私はドクターストレンジ',
-  'タイムストーンを守っている'
-  ];
-const jobC =[[30,30],
-[30,30],
-[30,30],
-[30,30],
-[30,30],
-[30,30]];
-const jobCtext =[
-  'なかよくしてね',
-  'たこはメンダコだよ',
-  'をどる？',
-  'ぺちゃん',
-  '深海にいるよ',
-  '陸の生き物だよ'
-  ];
-const jobD =[[10,10],
+let jobA =[
+  [60,40],
+  [40,15],
+  [35,35],
+  [0,100],
+  [0,-10],
+  [70,0]];
+  let jobAset =[
+    [60,40,3],
+    [40,15,2],
+    [35,35,3],
+    [0,100,2],
+    [0,-10,0],
+    [70,0,5]];
+    let jobAtext =[
+      'ブラスター',
+      'セイバー',
+      '格闘術',
+      '危険予測',
+      '余裕を見せている',
+      'グレネード'
+      ];
+        const jobAtextset =[
+      'ブラスター',
+      'セイバー',
+      '格闘術',
+      '危険予測',
+      '余裕を見せている',
+      'グレネード'
+      ];
+let jobB =[
+    [50,50],
+    [50,0],
+    [20,50],
+    [20,20],
+    [10,10],
+    [25,25]];
+ let jobBset =[
+    [60,60,6],
+    [50,0,2],
+    [20,50,1],
+    [20,20,3],
+    [10,10,0],
+    [25,25,3]];
+   let jobBtext =[
+      'テレキネシス',
+      '転移攻撃',
+      '不意打ち',
+      'パンチ',
+      'ファイア',
+      'スプリント'];
+    const jobBtextset =[
+        'テレキネシス',
+        '転移攻撃',
+        '不意打ち',
+        'パンチ',
+        'ファイア',
+        'スプリント'
+        ];
+let jobC =[[0,0],
+    [0,0],
+    [0,0],
+    [0,0],
+    [0,0],
+    [0,0]];
+    let jobCset =[[0,0,1],
+    [15,15,1],
+    [0,30,1],
+    [0,20,1],
+    [0,-5,1],
+    [150,0,10]];
+    let jobCtext =[
+      'ふやける',
+      '盆踊り',
+      'メンダコダンス',
+      'あまごい',
+      'いっぷく',
+      '核攻撃'];
+          const jobCtextset =[
+          'ふやける',
+          '盆踊り',
+          'メンダコダンス',
+          'あまごい',
+          'いっぷく',
+          '核攻撃'
+            ];
+let jobD =[[10,10],
 [10,10],
 [10,10],
 [10,10],
 [10,10],
 [10,10]];
-const jobDtext =[
-  'ぬるぬるしたが無意味',
-  'いろんなところにいるよ',
-  'ねむい',
-  '塩はまかないでね',
-  'ゆっくり動いた！',
-  'のろい！'
-  ];
+let jobDset =[[10,10,1],
+[10,10,1],
+[10,10,1],
+[10,10,1],
+[10,10,1],
+[10,10,1]];
+let jobDtext =[
+'ぬるぬる',
+'あまごい',
+'すいみん',
+'らりるれろ',
+'ゆっくり！',
+'のろい！'
+];const jobDtextset =[
+'ぬるぬる',
+'あまごい',
+'すいみん',
+'らりるれろ',
+'ゆっくり！',
+'のろい！'
+];
+
+
+
+/* メニュー選択⇒フィックスボタン⇒関数でmycardに入れ込み */
+let menumath =0;
+let skillpoint =0;
+const confirm = document.getElementById('confirm');
+confirm.onclick = () => {
+  if(jobnumber === 0){
+    const AA = document.getElementById('jobamenuaaa');
+    let AAA = AA.value;
+    const AB = document.getElementById('jobamenubbb');
+    let AAB = AB.value;
+    const AC = document.getElementById('jobamenuccc');
+    let AAC = AC.value;
+    const AD = document.getElementById('jobamenuddd');
+    let AAD = AD.value;
+    const AE = document.getElementById('jobamenueee');
+    let AAE = AE.value;
+    const AF = document.getElementById('jobamenufff');
+    let AAF = AF.value;
+    jobA[0] =  jobAset[AAA]; 
+    jobA[1] =  jobAset[AAB];
+    jobA[2] =  jobAset[AAC];
+    jobA[3] =  jobAset[AAD];
+    jobA[4] =  jobAset[AAE];
+    jobA[5] =  jobAset[AAF];
+    jobAtext[0] =  jobAtextset[AAA]; 
+    jobAtext[1] =  jobAtextset[AAB];
+    jobAtext[2] =  jobAtextset[AAC];
+    jobAtext[3] =  jobAtextset[AAD];
+    jobAtext[4] =  jobAtextset[AAE];
+    jobAtext[5] =  jobAtextset[AAF];
+    let mathone = jobA[0];
+    let mathtwo = jobA[1];
+    let maththree = jobA[2];
+    let mathfour = jobA[3];
+    let mathfive = jobA[4];
+    let mathsix = jobA[5];
+    if((mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2])>15){menumath=1;}else{menumath=0;}
+    skillpoint = mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2];
+    removeAllChildren(skilla);
+    let skillpointlog = document.createElement('p');
+    skillpointlog.innerText = `スキルポイント：${skillpoint}/15`;
+    skilla.appendChild(skillpointlog);
+
+    }else if(jobnumber === 1){
+      const AA = document.getElementById('jobbmenuaaa');
+      let AAA = AA.value;
+      const AB = document.getElementById('jobbmenubbb');
+      let AAB = AB.value;
+      const AC = document.getElementById('jobbmenuccc');
+      let AAC = AC.value;
+      const AD = document.getElementById('jobbmenuddd');
+      let AAD = AD.value;
+      const AE = document.getElementById('jobbmenueee');
+      let AAE = AE.value;
+      const AF = document.getElementById('jobbmenufff');
+      let AAF = AF.value;
+      jobB[0] =  jobBset[AAA]; 
+      jobB[1] =  jobBset[AAB];
+      jobB[2] =  jobBset[AAC];
+      jobB[3] =  jobBset[AAD];
+      jobB[4] =  jobBset[AAE];
+      jobB[5] =  jobBset[AAF];
+      jobBtext[0] =  jobBtextset[AAA]; 
+      jobBtext[1] =  jobBtextset[AAB];
+      jobBtext[2] =  jobBtextset[AAC];
+      jobBtext[3] =  jobBtextset[AAD];
+      jobBtext[4] =  jobBtextset[AAE];
+      jobBtext[5] =  jobBtextset[AAF];
+      let mathone = jobB[0];
+      let mathtwo = jobB[1];
+      let maththree = jobB[2];
+      let mathfour = jobB[3];
+      let mathfive = jobB[4];
+      let mathsix = jobB[5];
+      if((mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2])>15){menumath=1;}else{menumath=0;}
+      skillpoint = mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2];
+      removeAllChildren(skillb);
+      let skillpointlog = document.createElement('p');
+      skillpointlog.innerText = `スキルポイント：${skillpoint}/15`;
+      skillb.appendChild(skillpointlog);
+      }else if(jobnumber === 2){
+        const AA = document.getElementById('jobcmenuaaa');
+        let AAA = AA.value;
+        const AB = document.getElementById('jobcmenubbb');
+        let AAB = AB.value;
+        const AC = document.getElementById('jobcmenuccc');
+        let AAC = AC.value;
+        const AD = document.getElementById('jobcmenuddd');
+        let AAD = AD.value;
+        const AE = document.getElementById('jobcmenueee');
+        let AAE = AE.value;
+        const AF = document.getElementById('jobcmenufff');
+        let AAF = AF.value;
+        jobC[0] =  jobCset[AAA]; 
+        jobC[1] =  jobCset[AAB];
+        jobC[2] =  jobCset[AAC];
+        jobC[3] =  jobCset[AAD];
+        jobC[4] =  jobCset[AAE];
+        jobC[5] =  jobCset[AAF];
+        jobCtext[0] =  jobCtextset[AAA]; 
+        jobCtext[1] =  jobCtextset[AAB];
+        jobCtext[2] =  jobCtextset[AAC];
+        jobCtext[3] =  jobCtextset[AAD];
+        jobCtext[4] =  jobCtextset[AAE];
+        jobCtext[5] =  jobCtextset[AAF];
+        let mathone = jobC[0];
+        let mathtwo = jobC[1];
+        let maththree = jobC[2];
+        let mathfour = jobC[3];
+        let mathfive = jobC[4];
+        let mathsix = jobC[5];
+        if((mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2])>15){menumath=1;}else{menumath=0;}
+        skillpoint = mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2];
+        removeAllChildren(skillc);
+        let skillpointlog = document.createElement('p');
+        skillpointlog.innerText = `スキルポイント：${skillpoint}/15`;
+        skillc.appendChild(skillpointlog);
+      }else if(jobnumber === 3){
+          const AA = document.getElementById('jobdmenuaaa');
+          let AAA = AA.value;
+          const AB = document.getElementById('jobdmenubbb');
+          let AAB = AB.value;
+          const AC = document.getElementById('jobdmenuccc');
+          let AAC = AC.value;
+          const AD = document.getElementById('jobdmenuddd');
+          let AAD = AD.value;
+          const AE = document.getElementById('jobdmenueee');
+          let AAE = AE.value;
+          const AF = document.getElementById('jobdmenufff');
+          let AAF = AF.value;
+          jobD[0] =  jobDset[AAA]; 
+          jobD[1] =  jobDset[AAB];
+          jobD[2] =  jobDset[AAC];
+          jobD[3] =  jobDset[AAD];
+          jobD[4] =  jobDset[AAE];
+          jobD[5] =  jobDset[AAF];
+          jobDtext[0] =  jobDtextset[AAA]; 
+          jobDtext[1] =  jobDtextset[AAB];
+          jobDtext[2] =  jobDtextset[AAC];
+          jobDtext[3] =  jobDtextset[AAD];
+          jobDtext[4] =  jobDtextset[AAE];
+          jobDtext[5] =  jobDtextset[AAF];
+          let mathone = jobD[0];
+          let mathtwo = jobD[1];
+          let maththree = jobD[2];
+          let mathfour = jobD[3];
+          let mathfive = jobD[4];
+          let mathsix = jobD[5];
+          if((mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2])>15){menumath=1;}else{menumath=0;}
+          skillpoint = mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2];
+          removeAllChildren(skilld);
+          let skillpointlog = document.createElement('p');
+          skillpointlog.innerText = `スキルポイント：${skillpoint}/15`;
+          skilld.appendChild(skillpointlog);
+        }
+      
+      
+  if(menumath<1){
+    tyuui.style.display='none';
+    if(resetandfixbtn<1){
+    start.style.display='inline-block';}
+  }else{
+    start.style.display='none';
+    tyuui.style.display='inline-block';
+  }}
+let resetandfixbtn = 0;
