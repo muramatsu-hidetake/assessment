@@ -38,7 +38,6 @@ let jobnumber = 0;
 
 // 名前ボタン＞結果表示
 submitButton.onclick = () => {
-  document.getElementById("battle").style.display = "inline-block";
   const userName = userNameInput.value;
   if (userName.length === 0) {
     return;
@@ -414,6 +413,32 @@ let menumath =0;
 let skillpoint =0;
 const confirm = document.getElementById('confirm');
 confirm.onclick = () => {
+  
+  let skillaalogone = document.createElement('p');
+  let skillaalogtwo = document.createElement('p');
+  let skillaalogthree = document.createElement('p');
+  let skillaalogfour = document.createElement('p');
+  let skillaalogfive = document.createElement('p');
+  let skillaalogsix = document.createElement('p');
+  let skillbblogone = document.createElement('p');
+  let skillbblogtwo = document.createElement('p');
+  let skillbblogthree = document.createElement('p');
+  let skillbblogfour = document.createElement('p');
+  let skillbblogfive = document.createElement('p');
+  let skillbblogsix = document.createElement('p');
+  let skillcclogone = document.createElement('p');
+  let skillcclogtwo = document.createElement('p');
+  let skillcclogthree = document.createElement('p');
+  let skillcclogfour = document.createElement('p');
+  let skillcclogfive = document.createElement('p');
+  let skillcclogsix = document.createElement('p');
+  let skillddlogone = document.createElement('p');
+  let skillddlogtwo = document.createElement('p');
+  let skillddlogthree = document.createElement('p');
+  let skillddlogfour = document.createElement('p');
+  let skillddlogfive = document.createElement('p');
+  let skillddlogsix = document.createElement('p');
+
   if(jobnumber === 0){
     const AA = document.getElementById('jobamenuaaa');
     let AAA = AA.value;
@@ -448,9 +473,31 @@ confirm.onclick = () => {
     if((mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2])>15){menumath=1;}else{menumath=0;}
     skillpoint = mathone[2]+mathtwo[2]+maththree[2]+mathfour[2]+mathfive[2]+mathsix[2];
     removeAllChildren(skilla);
+    
     let skillpointlog = document.createElement('p');
     skillpointlog.innerText = `スキルポイント：${skillpoint}/15`;
     skilla.appendChild(skillpointlog);
+
+    skillaalogone.innerText = '必要ポイント：'+mathone[2];
+    skillaalogtwo.innerText = '必要ポイント：'+mathtwo[2];
+    skillaalogthree.innerText = '必要ポイント：'+maththree[2];
+    skillaalogfour.innerText = '必要ポイント：'+mathfour[2];
+    skillaalogfive.innerText = '必要ポイント：'+mathfive[2];
+    skillaalogsix.innerText = '必要ポイント：'+mathsix[2];
+    removeAllChildren(skillaaaone);
+    removeAllChildren(skillaaatwo);
+    removeAllChildren(skillaaathree);
+    removeAllChildren(skillaaafour);
+    removeAllChildren(skillaaafive);
+    removeAllChildren(skillaaasix);
+    skillaaaone.appendChild(skillaalogone);
+    skillaaatwo.appendChild(skillaalogtwo);
+    skillaaathree.appendChild(skillaalogthree);
+    skillaaafour.appendChild(skillaalogfour);
+    skillaaafive.appendChild(skillaalogfive);
+    skillaaasix.appendChild(skillaalogsix);
+
+    
 
     }else if(jobnumber === 1){
       const AA = document.getElementById('jobbmenuaaa');
@@ -489,6 +536,27 @@ confirm.onclick = () => {
       let skillpointlog = document.createElement('p');
       skillpointlog.innerText = `スキルポイント：${skillpoint}/15`;
       skillb.appendChild(skillpointlog);
+
+      skillbblogone.innerText = '必要ポイント：'+mathone[2];
+      skillbblogtwo.innerText = '必要ポイント：'+mathtwo[2];
+      skillbblogthree.innerText = '必要ポイント：'+maththree[2];
+      skillbblogfour.innerText = '必要ポイント：'+mathfour[2];
+      skillbblogfive.innerText = '必要ポイント：'+mathfive[2];
+      skillbblogsix.innerText = '必要ポイント：'+mathsix[2];
+      removeAllChildren(skillbbbone);
+      removeAllChildren(skillbbbtwo);
+      removeAllChildren(skillbbbthree);
+      removeAllChildren(skillbbbfour);
+      removeAllChildren(skillbbbfive);
+      removeAllChildren(skillbbbsix);
+      skillbbbone.appendChild(skillbblogone);
+      skillbbbtwo.appendChild(skillbblogtwo);
+      skillbbbthree.appendChild(skillbblogthree);
+      skillbbbfour.appendChild(skillbblogfour);
+      skillbbbfive.appendChild(skillbblogfive);
+      skillbbbsix.appendChild(skillbblogsix);
+
+
       }else if(jobnumber === 2){
         const AA = document.getElementById('jobcmenuaaa');
         let AAA = AA.value;
@@ -526,6 +594,29 @@ confirm.onclick = () => {
         let skillpointlog = document.createElement('p');
         skillpointlog.innerText = `スキルポイント：${skillpoint}/15`;
         skillc.appendChild(skillpointlog);
+
+        skillcclogone.innerText = '必要ポイント：'+mathone[2];
+skillcclogtwo.innerText = '必要ポイント：'+mathtwo[2];
+skillcclogthree.innerText = '必要ポイント：'+maththree[2];
+skillcclogfour.innerText = '必要ポイント：'+mathfour[2];
+skillcclogfive.innerText = '必要ポイント：'+mathfive[2];
+skillcclogsix.innerText = '必要ポイント：'+mathsix[2];
+removeAllChildren(skillcccone);
+removeAllChildren(skillccctwo);
+removeAllChildren(skillcccthree);
+removeAllChildren(skillcccfour);
+removeAllChildren(skillcccfive);
+removeAllChildren(skillcccsix);
+skillcccone.appendChild(skillcclogone);
+skillccctwo.appendChild(skillcclogtwo);
+skillcccthree.appendChild(skillcclogthree);
+skillcccfour.appendChild(skillcclogfour);
+skillcccfive.appendChild(skillcclogfive);
+skillcccsix.appendChild(skillcclogsix); 
+
+
+
+
       }else if(jobnumber === 3){
           const AA = document.getElementById('jobdmenuaaa');
           let AAA = AA.value;
@@ -563,6 +654,27 @@ confirm.onclick = () => {
           let skillpointlog = document.createElement('p');
           skillpointlog.innerText = `スキルポイント：${skillpoint}/15`;
           skilld.appendChild(skillpointlog);
+
+          skillddlogone.innerText = '必要ポイント：'+mathone[2];
+
+
+          skillddlogtwo.innerText = '必要ポイント：'+mathtwo[2];
+skillddlogthree.innerText = '必要ポイント：'+maththree[2];
+skillddlogfour.innerText = '必要ポイント：'+mathfour[2];
+skillddlogfive.innerText = '必要ポイント：'+mathfive[2];
+skillddlogsix.innerText = '必要ポイント：'+mathsix[2];
+removeAllChildren(skilldddone);
+removeAllChildren(skilldddtwo);
+removeAllChildren(skilldddthree);
+removeAllChildren(skilldddfour);
+removeAllChildren(skilldddfive);
+removeAllChildren(skilldddsix);
+skilldddone.appendChild(skillddlogone);
+skilldddtwo.appendChild(skillddlogtwo);
+skilldddthree.appendChild(skillddlogthree);
+skilldddfour.appendChild(skillddlogfour);
+skilldddfive.appendChild(skillddlogfive);
+skilldddsix.appendChild(skillddlogsix);
         }
       
       
@@ -575,3 +687,29 @@ confirm.onclick = () => {
     tyuui.style.display='inline-block';
   }}
 let resetandfixbtn = 0;
+
+let skillaaaone = document.getElementById('skillalogone')
+let skillaaatwo = document.getElementById('skillalogtwo')
+let skillaaathree = document.getElementById('skillalogthree')
+let skillaaafour = document.getElementById('skillalogfour')
+let skillaaafive = document.getElementById('skillalogfive')
+let skillaaasix = document.getElementById('skillalogsix')
+let skillbbbone = document.getElementById('skillblogone')
+let skillbbbtwo = document.getElementById('skillblogtwo')
+let skillbbbthree = document.getElementById('skillblogthree')
+let skillbbbfour = document.getElementById('skillblogfour')
+let skillbbbfive = document.getElementById('skillblogfive')
+let skillbbbsix = document.getElementById('skillblogsix')
+let skillcccone = document.getElementById('skillclogone')
+let skillccctwo = document.getElementById('skillclogtwo')
+let skillcccthree = document.getElementById('skillclogthree')
+let skillcccfour = document.getElementById('skillclogfour')
+let skillcccfive = document.getElementById('skillclogfive')
+let skillcccsix = document.getElementById('skillclogsix')
+let skilldddone = document.getElementById('skilldlogone')
+let skilldddtwo = document.getElementById('skilldlogtwo')
+let skilldddthree = document.getElementById('skilldlogthree')
+let skilldddfour = document.getElementById('skilldlogfour')
+let skilldddfive = document.getElementById('skilldlogfive')
+let skilldddsix = document.getElementById('skilldlogsix')
+
