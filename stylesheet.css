@@ -110,10 +110,8 @@ body, h1, h2, p, form, input, ul {
     color:white;
 }
 
-  .logtext{
-      opacity: 0;
-}
-  
+.logtext{opacity: 0;}
+
 .logone{
     animation-name: one;
     animation-duration: 8.5s;
@@ -121,20 +119,10 @@ body, h1, h2, p, form, input, ul {
     color:black;
 }
 @keyframes one{
-    0%{
-        opacity: 0;
-        }
-        88.23%{
-        opacity: 0;
-        }
-        94.11%{
-        opacity: 0;
-        }
-        100%{
-        opacity: 1;
-        }
-    
-}
+    0%{opacity: 0;}
+        88.23%{opacity: 0;}
+        94.11%{opacity: 0;}
+        100%{opacity: 1;}}
 .logtwo{
     animation-name: two;
     animation-duration: 7s;
@@ -142,20 +130,10 @@ body, h1, h2, p, form, input, ul {
     color:black;
 }
 @keyframes two{
-    0%{
-        opacity: 0;
-        }
-        85.71%{
-        opacity: 0;
-        }
-        92.85%{
-        opacity: 1;
-        }
-        100%{
-        opacity: 1;
-        }
-    
-}
+    0%{opacity: 0;}
+        85.71%{opacity: 0;}
+        92.85%{opacity: 1;}
+        100%{opacity: 1;}}
 .logthree{
     animation-name: three;
     animation-duration: 5.5s;
@@ -163,20 +141,10 @@ body, h1, h2, p, form, input, ul {
     color:black;
 }
 @keyframes three{
-    0%{
-        opacity: 0;
-        }
-        81.81%{
-        opacity: 0;
-        }
-        87.5%{
-        opacity: 1;
-        }
-        100%{
-        opacity: 1;
-        }
-    
-}
+    0%{opacity: 0;}
+        81.81%{opacity: 0;}
+        87.5%{opacity: 1;}
+        100%{opacity: 1;}}
 .logfour{
     animation-name: four;
     animation-duration: 4s;
@@ -184,19 +152,10 @@ body, h1, h2, p, form, input, ul {
     color:black;
 }
 @keyframes four{
-    0%{
-    opacity: 0;
-    }
-    75%{
-    opacity: 0;
-    }
-    87.5%{
-    opacity: 1;
-    }
-    100%{
-    opacity: 1;
-    }
-}
+    0%{opacity: 0;}
+    75%{opacity: 0;}
+    87.5%{opacity: 1;}
+    100%{opacity: 1;}}
 .logfive{
     animation-name: five;
     animation-duration: 2.5s;
@@ -204,18 +163,10 @@ body, h1, h2, p, form, input, ul {
     color:black;
 }
 @keyframes five{
-    0%{
-        opacity: 0;
-    }
-    60%{
-        opacity: 0;
-    }
-    80%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 1;
-    }
+    0%{opacity: 0;}
+    60%{opacity: 0;}
+    80%{opacity: 1;}
+    100%{opacity: 1;}
 }
 .logsix{
     animation-name: six;
@@ -224,16 +175,9 @@ body, h1, h2, p, form, input, ul {
     color:black;
 }
 @keyframes six{
-    0%{
-        opacity: 0;
-    }
-    50%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 1;
-    }
-}
+    0%{opacity: 0;}
+    50%{opacity: 1;}
+    100%{opacity: 1;}}
 .animation{
     animation-name: animation;
     animation-duration: 10s;
@@ -242,20 +186,20 @@ body, h1, h2, p, form, input, ul {
     color:black;
 }
 @keyframes animation{
-    0%{    position: relative;        top: -83.33px;    }
-    10%{        position: relative;        top: -83.33px;    }
-    15%{        position: relative;        top: -66.66px;    }
-    25%{        position: relative;        top: -66.66px;    }
-    30%{        position: relative;        top: -50px;    }
-    40%{        position: relative;        top: -50px;    }
-    45%{        position: relative;        top: -33.33px;    }
-    55%{        position: relative;        top: -33.33px;    }
-    60%{        position: relative;        top: -16.66px;    }
-    70%{        position: relative;        top: -16.66px;    }
-    75%{        position: relative;        top: 0px;    }
-    85%{        position: relative;        top: 0px;    }
-    90%{        position: relative;        top: 0px;    }
-    100%{    }}
+    0%{position: relative; top: -83.33px; }
+    10%{position: relative; top: -83.33px; }
+    15%{position: relative; top: -66.66px; }
+    25%{position: relative; top: -66.66px; }
+    30%{position: relative; top: -50px; }
+    40%{position: relative; top: -50px; }
+    45%{position: relative; top: -33.33px; }
+    55%{position: relative; top: -33.33px; }
+    60%{position: relative; top: -16.66px; }
+    70%{position: relative; top: -16.66px; }
+    75%{position: relative; top: 0px; }
+    85%{position: relative; top: 0px; }
+    90%{position: relative; top: 0px; }
+    100%{}}
 
 
 /* HPゲージ */
@@ -344,7 +288,7 @@ body, h1, h2, p, form, input, ul {
     background-color: antiquewhite;
     padding-top: 30px;
     padding-bottom: 30px;
-    width:600px;
+    width:80%;
     margin:0 auto;
     display: flex;
     gap:10px 70px;
@@ -365,4 +309,11 @@ body, h1, h2, p, form, input, ul {
 #mymenufour{
     text-align: left;
     display: none;
+}
+
+#confirm{
+    width:150px;
+    border:1px rgb(252, 255, 101) solid;
+    border-radius: 30px;
+    background-color: rgb(255, 248, 147);
 }
