@@ -14,7 +14,9 @@ body, h1, h2, p, form, input, ul {
       margin:10px auto;
       text-align: center;
   }
-
+  .battlebtn{
+      height:40px;
+  }
   .start{
     display: none;
     width:100px;
@@ -32,8 +34,13 @@ body, h1, h2, p, form, input, ul {
     40%{opacity: 0;}
     100%{opacity: 1;}
 }
+#tyuui{
+    display:none;
+    background-color: crimson;
+    color: aliceblue;
+}
 
-
+.bangou{float: left;}
   .reset{
       display: none;
       margin:0 auto;
@@ -331,4 +338,31 @@ body, h1, h2, p, form, input, ul {
 }
 .height{
     height:30px;
+}
+
+.menu{
+    background-color: antiquewhite;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width:600px;
+    margin:0 auto;
+    display: flex;
+    gap:10px 70px;
+    justify-content: center;
+}
+#mymenu{
+    text-align: left;
+    display: none;
+}
+#mymenutwo{
+    text-align: left;
+    display: none;
+}
+#mymenuthree{
+    text-align: left;
+    display: none;
+}
+#mymenufour{
+    text-align: left;
+    display: none;
 }
