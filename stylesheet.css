@@ -40,7 +40,12 @@ body, h1, h2, p, form, input, ul {
     color: aliceblue;
 }
 
-.bangou{float: left;}
+.flex{
+    display: flex;
+    width:300px;
+    margin-left:60px;
+}
+
   .reset{
       display: none;
       margin:0 auto;
@@ -294,6 +299,10 @@ body, h1, h2, p, form, input, ul {
     gap:10px 70px;
     justify-content: center;
 }
+@media (max-width: 700px) {
+    /*　画面サイズ 499pxまで適用／★★以上ならmin-width　*/
+    .menu{width:100%}
+    }
 #mymenu{
     text-align: left;
     display: none;
